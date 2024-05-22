@@ -26,6 +26,7 @@ jobs:
        echo "${{ secrets.REMOTE_SSH_KEY }}" | base64 -d > id_rsa
        chmod 600 id_rsa
        cat id_rsa
+       ssh -o StrictHostKeyChecking=no -i id_rsa ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}
 
     - name: Deploy to remote server
       uses: appleboy/ssh-action@v0.1.4
