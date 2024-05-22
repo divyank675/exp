@@ -23,15 +23,16 @@ jobs:
 
     - name: Write SSH private key to file
       run: |
-       echo "${{ secrets.REMOTE_SSH_KEY }}" | base64 -d > ~/.ssh/id_rsa
-       chmod 600 ~/.ssh/id_rsa
+       echo "${{ secrets.REMOTE_SSH_KEY }}" | base64 -d > id_rsa
+       chmod 600 id_rsa
+       cat id_rsa
 
     - name: Deploy to remote server
       uses: appleboy/ssh-action@v0.1.4
       with:
          host: ${{ secrets.REMOTE_HOST }}
          username: ${{ secrets.REMOTE_USER }}
-         key: ~/.ssh/id_rsa
+         key: id_rsa
          script: |
            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/go-app:latest
            sudo docker stop go-app || true
