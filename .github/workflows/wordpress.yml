@@ -1,0 +1,22 @@
+name: WordPress CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+    - name: Install Composer
+      run: sudo apt-get install -y composer
+    - name: Install dependencies
+      run: composer install
+      working-directory: ./wordpress-app
+    - name: Run PHPCS
+      run: vendor/bin/phpcs --standard=phpcs.xml ./wordpress
+      working-directory: ./wordpress-app
