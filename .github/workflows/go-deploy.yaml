@@ -28,6 +28,8 @@ jobs:
         ssh_public_key: ${{ secrets.REMOTE_HOST_PUB_KEY }}
         ssh_private_key: ${{ secrets.REMOTE_SSH_KEY }}
         pull_images_first: true
+        docker_registry_username: ${{ secrets.DOCKER_USERNAME }}
+        docker_registry_password: ${{ secrets.DOCKER_PASSWORD }}
 
 
     # - name: Deploy to remote server

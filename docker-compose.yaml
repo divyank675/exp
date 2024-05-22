@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  go-app:
+    build: ./go-app
+    container_name: go-app
+    ports:
+      - "8080:8080"
+  nextjs-app:
+    build: ./nextjs-app
+    container_name: nextjs-app
+    ports:
+      - "3000:3000"
+  wordpress-app:
+    build: ./wordpress-app
+    container_name: wordpress-app
+    ports:
+      - "8081:80"
